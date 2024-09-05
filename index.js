@@ -2,13 +2,11 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 5500;
+const videosRoute = require('./routes/videos');
 
-// Utilizar la variable de entorno PORT
-const PORT = process.env.PORT || 3000;
-
-app.get('/', (req, res) => {
-    res.send('¡Hola Mundo!');
-});
+app.use(express.json());
+app.use('/videos', videosRoute);
 
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
