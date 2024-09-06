@@ -1,9 +1,11 @@
-const youtubeService = require('../services/youtubeService');
+const youtubeService = require('../services/MediaService');
 
-/* Get 5 last videos */
+/* Get (N) last videos */
 const getLatestFacebookVideos = async (req, res) => {
     try {
-        const response = await youtubeService.getLatestFacebookVideos();
+        
+        const number = req.params.number || 1;
+        const response = await youtubeService.getLatestFacebookVideos(number);
         if (response.success) {
             res.json(response.videos);
         } else {
@@ -15,18 +17,21 @@ const getLatestFacebookVideos = async (req, res) => {
 };
 
 
-const getVideoById = (req, res) => {
-    const videoId = req.params.id;
-    res.send(`Detalles del video con ID: ${videoId}`);
+const getLatestFacebookImages = async (req, res) => {
+    try {
+        
+        const number = req.params.number || 1;
+        const response = await youtubeService.getLatestFacebookImages(number);
+        if (response.success) {
+            res.json(response.videos);
+        } else {
+            res.status(500).json({ message: `Error al obtener los videos: ${response.error}` });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 };
-
-const createVideo = (req, res) => {
-    const newVideo = req.body;
-    res.send(`Nuevo video creado: ${JSON.stringify(newVideo)}`);
-};
-
 module.exports = {
     getLatestFacebookVideos,
-    getVideoById,
-    createVideo
+    getLatestFacebookImages
 };
