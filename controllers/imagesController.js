@@ -1,6 +1,7 @@
 const youtubeService = require('../services/MediaService');
 
 /* Get (N) last Images */
+
 const getLatestInstagramImages = async (req, res) => {
     try {
         const number = req.params.number || 1;
