@@ -1,10 +1,11 @@
 require("dotenv").config();
 const { google } = require("googleapis");
 const sheets = google.sheets("v4");
+const credentials = JSON.parse(process.env.JSON_GOOGLE);
 
 async function getSheetData(sheetId, range) {
   const auth = new google.auth.GoogleAuth({
-    keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS_ROUTE,
+    credentials,
     scopes: [process.env.GOOGLE_SHEETS_SCOPES],
   });
 
@@ -20,8 +21,9 @@ async function getSheetData(sheetId, range) {
 }
 
 async function postSheetRegister(sheetId, range, body) {
+
   const auth = new google.auth.GoogleAuth({
-    keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS_ROUTE,
+    credentials,
     scopes: [process.env.GOOGLE_SHEETS_SCOPES],
   });
 
