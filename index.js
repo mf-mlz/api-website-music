@@ -50,5 +50,5 @@ app.use("/survey", surveyRoutes);
 app.use("/register", registerRoutes);
 
 https.createServer(options, app).listen(PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${process.env.HOST_FRONT}`);
+  console.log(`Servidor HTTP escuchando en el puerto ${process.env.HOST_FRONT}`);
 });
