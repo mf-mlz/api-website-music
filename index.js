@@ -40,5 +40,5 @@ app.use("/survey", surveyRoutes);
 app.use("/register", registerRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
+  console.log(`Servidor escuchando en el puerto ${process.env.HOST_FRONT}`);
 });
