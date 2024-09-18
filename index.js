@@ -22,7 +22,7 @@ const limiter = rateLimit({
 
 app.use(
   cors({
-    origin: process.env.HOST_FRONT,
+    origin: process.env.HOST_FRONT.replace(/\/$/, ''),
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
@@ -40,5 +40,5 @@ app.use("/survey", surveyRoutes);
 app.use("/register", registerRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando`);
+  console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
 });
