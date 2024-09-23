@@ -9,14 +9,7 @@ const videosRoute = require("./routes/videos");
 const imagesRoutes = require("./routes/images");
 const surveyRoutes = require("./routes/survey");
 const registerRoutes = require("./routes/register");
-const https = require('https');
-const fs = require('fs');
 
-/* SSL */
-const options = {
-  key: fs.readFileSync("/etc/letsencrypt/live/thecognacmusic.com/privkey.pem"),
-  cert: fs.readFileSync("/etc/letsencrypt/live/thecognacmusic.com/fullchain.pem"),
-};
 
 /* Configurations */
 const limiter = rateLimit({
@@ -49,6 +42,6 @@ app.use("/images", imagesRoutes);
 app.use("/survey", surveyRoutes);
 app.use("/register", registerRoutes);
 
-https.createServer(options, app).listen(PORT, () => {
-  console.log(`Servidor HTTP escuchando en el puerto ${process.env.HOST_FRONT}`);
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en el puerto ${process.env.HOST_FRONT}`);
 });
